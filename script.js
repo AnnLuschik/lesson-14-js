@@ -1,3 +1,31 @@
+// Part 1
+
+let login = prompt('Начало регистрации. Придумайте имя пользователя');
+let password = prompt('Придумайте пароль');
+
+let userData = {
+    login,
+    password,
+}
+
+let currentEnterLogin = prompt('Введите имя пользователя');
+
+while (currentEnterLogin !== userData.login) {
+    currentEnterLogin = prompt('Такой пользователь не зарегистрирован. Введите имя пользователя. ');
+} 
+
+let currentEnterPassword =  prompt('Введите пароль');
+
+while (currentEnterPassword !== userData.password) {
+    currentEnterPassword = prompt('Неправильный пароль. Введите пароль.');
+} 
+
+alert('Вы успешно зашли на сайт');
+
+// Part 2
+
+
+
 // Part 3
 
 var persons = [
