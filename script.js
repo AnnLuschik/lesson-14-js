@@ -11,7 +11,7 @@ let userData = {
 let currentEnterLogin = prompt('Введите имя пользователя');
 
 while (currentEnterLogin !== userData.login) {
-    currentEnterLogin = prompt('Такой пользователь не зарегистрирован. Введите имя пользователя. ');
+    currentEnterLogin = prompt('Такой пользователь не зарегистрирован. Введите имя пользователя.');
 } 
 
 let currentEnterPassword =  prompt('Введите пароль');
@@ -24,7 +24,85 @@ alert('Вы успешно зашли на сайт');
 
 // Part 2
 
+let login;
+let password;
+let currentLogin;
+let currentPassword;
 
+let userData = {
+    login,
+    password,
+}
+
+login = prompt('Начало регистрации. Придумайте имя пользователя');
+
+escape:
+while (true) {
+
+    registration:
+    while (true) {
+        if (login === '') {
+            login = prompt('Поле не должно быть пустым. Пожалуйста, придумайте имя пользователя.');
+    
+        } else if (login === null) {
+            alert ('Отмена регистрации.');
+            break escape;
+    
+        } else {
+            password = prompt('Придумайте пароль'); 
+
+            while (true) {
+                if (password === '') {
+                    password = prompt('Поле не должно быть пустым. Пожалуйста, придумайте пароль.');
+        
+                } else if (password === null) {
+                    alert ('Отмена регистрации.');
+                    break escape;
+        
+                } else break registration;
+            }
+        }
+    }
+
+    userData.login = login;
+    userData.password = password;
+
+    currentLogin = prompt('Введите имя пользователя');
+
+    while (true) {
+
+        if (currentLogin === userData.login) {
+            currentPassword = prompt('Введите пароль');
+    
+            while (true) {
+                if (currentPassword === userData.password) {
+                    alert('Вы успешно зашли на сайт');
+                    break escape;
+
+                } else if (currentPassword === '') {
+                    currentPassword = prompt('Поле не должно быть пустым. Пожалуйста,введите пароль.');
+
+                } else if (currentPassword === null) {
+                    alert('Отменено');
+                    break escape;
+
+                } else {
+                    currentPassword = prompt('Неправильный пароль. Введите пароль.');
+                }
+            }
+            
+        } else if (currentLogin === '') {
+            currentLogin = prompt('Поле не должно быть пустым. Пожалуйста, введите имя пользователя.');
+    
+        } else if (currentLogin === null) {
+            alert('Отменено');
+            break escape;
+
+        } else {
+            currentLogin = prompt('Такой пользователь не зарегистрирован. Введите имя пользователя.');
+        }
+    }
+}
 
 // Part 3
 
