@@ -1,28 +1,4 @@
-// Part 1
-
-let login = prompt('Начало регистрации. Придумайте имя пользователя');
-let password = prompt('Придумайте пароль');
-
-let userData = {
-    login,
-    password,
-}
-
-let currentEnterLogin = prompt('Введите имя пользователя');
-
-while (currentEnterLogin !== userData.login) {
-    currentEnterLogin = prompt('Такой пользователь не зарегистрирован. Введите имя пользователя.');
-} 
-
-let currentEnterPassword =  prompt('Введите пароль');
-
-while (currentEnterPassword !== userData.password) {
-    currentEnterPassword = prompt('Неправильный пароль. Введите пароль.');
-} 
-
-alert('Вы успешно зашли на сайт');
-
-// Part 2
+// Part 1 and 2
 
 let login;
 let password;
@@ -48,6 +24,12 @@ while (true) {
             alert ('Отмена регистрации.');
             break escape;
     
+        } else if (login.length < 4) {
+            login = prompt('Имя пользователя не должно быть короче четырёх символов.'); 
+
+        } else if (login.match(/\W/gu)) {
+            login = prompt('Имя пользователя может состоять только из букв латинского алфавита, цифр и нижнего подчеркивания.'); 
+
         } else {
             password = prompt('Придумайте пароль'); 
 
@@ -59,6 +41,12 @@ while (true) {
                     alert ('Отмена регистрации.');
                     break escape;
         
+                } else if (password.length < 8) {
+                    password = prompt('Пароль должен состоять минимум из 8 символов.');
+
+                } else if (password.match(/[^\w\-$!.]/gu)) {
+                    password = prompt(`Пароль может состоять только из букв латинского алавита, цифр и символов '_', '-'', '$', '!', '.'`);
+
                 } else break registration;
             }
         }
@@ -66,6 +54,7 @@ while (true) {
 
     userData.login = login;
     userData.password = password;
+    alert('Регистрация успешно завершена.');
 
     currentLogin = prompt('Введите имя пользователя');
 
