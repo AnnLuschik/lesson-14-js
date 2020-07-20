@@ -45,7 +45,7 @@ while (true) {
                     password = prompt('Пароль должен состоять минимум из 8 символов.');
 
                 } else if (password.match(/[^\w\-$!.]/gu)) {
-                    password = prompt(`Пароль может состоять только из букв латинского алавита, цифр и символов '_', '-'', '$', '!', '.'`);
+                    password = prompt(`Пароль может состоять только из букв латинского алавита, цифр и символов ' _ ', ' - ', ' $ ', ' ! ', ' . '`);
 
                 } else break registration;
             }
@@ -75,6 +75,12 @@ while (true) {
                     alert('Отменено');
                     break escape;
 
+                } else if (currentPassword.length < 8) {
+                    currentPassword = prompt('Пароль должен состоять минимум из 8 символов.');
+
+                } else if (currentPassword.match(/[^\w\-$!.]/gu)) {
+                    currentPassword = prompt(`Пароль может состоять только из букв латинского алавита, цифр и символов ' _ ', ' - ', ' $ ', ' ! ', ' .'`);
+
                 } else {
                     currentPassword = prompt('Неправильный пароль. Введите пароль.');
                 }
@@ -86,6 +92,12 @@ while (true) {
         } else if (currentLogin === null) {
             alert('Отменено');
             break escape;
+
+        } else if (currentLogin.length < 4) {
+            currentLogin = prompt('Имя пользователя не должно быть короче четырёх символов.'); 
+
+        } else if (currentLogin.match(/\W/gu)) {
+            currentLogin = prompt('Имя пользователя может состоять только из букв латинского алфавита, цифр и нижнего подчеркивания.'); 
 
         } else {
             currentLogin = prompt('Такой пользователь не зарегистрирован. Введите имя пользователя.');
