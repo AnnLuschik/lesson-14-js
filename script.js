@@ -109,18 +109,18 @@ var underages = [];
 for (let person of persons) {
 
     if ( person.age >= 18 ) {
+        person.profession = prompt(`What is your profession, ${person.name}?`);
         adults.push(person);
-        adults[adults.length - 1].profession = prompt(`What is your profession, ${person.name}?`);
 
     } else underages.push(person);
 }
 // Родителям прописываются дети
-for (let person of persons) {
+for (let adult of adults) {
 
-    for (let i = 0; i < persons.length; i++) {
+    for (let child of underages) {
 
-        if  ( persons[i].parentId === person.id ) {
-            person.children = persons[i].name;
+        if  ( child.parentId === adult.id ) {
+            adult.children = child.name;
           }
     }
 }
