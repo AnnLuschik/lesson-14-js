@@ -75,12 +75,6 @@ while (true) {
                     alert('Отменено');
                     break escape;
 
-                } else if (currentPassword.length < 8) {
-                    currentPassword = prompt('Пароль должен состоять минимум из 8 символов.');
-
-                } else if (currentPassword.match(/[^\w\-$!.]/gu)) {
-                    currentPassword = prompt(`Пароль может состоять только из букв латинского алавита, цифр и символов ' _ ', ' - ', ' $ ', ' ! ', ' .'`);
-
                 } else {
                     currentPassword = prompt('Неправильный пароль. Введите пароль.');
                 }
@@ -92,12 +86,6 @@ while (true) {
         } else if (currentLogin === null) {
             alert('Отменено');
             break escape;
-
-        } else if (currentLogin.length < 4) {
-            currentLogin = prompt('Имя пользователя не должно быть короче четырёх символов.'); 
-
-        } else if (currentLogin.match(/\W/gu)) {
-            currentLogin = prompt('Имя пользователя может состоять только из букв латинского алфавита, цифр и нижнего подчеркивания.'); 
 
         } else {
             currentLogin = prompt('Такой пользователь не зарегистрирован. Введите имя пользователя.');
@@ -117,22 +105,24 @@ var persons = [
 var adults = [];
 var underages = [];
 
-for (let i = 0; i < persons.length; i++) {
+// Массив разделяется на взрослых и несовершеннолетних, у взрослых запрашивается профессия
+for (let person of persons) {
 
-    if ( persons[i].age >= 18 ) {
-        adults.push(persons[i]);
-    } else underages.push(persons[i]);
+    if ( person.age >= 18 ) {
+        adults.push(person);
+        adults[adults.length - 1].profession = prompt(`What is your profession, ${person.name}?`);
 
-    for (let j = 0; j < persons.length; j++) {
-
-        if  ( persons[i].parentId === persons[j].id ) {
-            persons[j].children = persons[i].name;
-        }
-    }
+    } else underages.push(person);
 }
+// Родителям прописываются дети
+for (let person of persons) {
 
-for (let i = 0; i < adults.length; i++) {
-    adults[i].profession = prompt(`What is your profession, ${persons[i].name}?`);
+    for (let i = 0; i < persons.length; i++) {
+
+        if  ( persons[i].parentId === person.id ) {
+            person.children = persons[i].name;
+          }
+    }
 }
 
 console.log(adults);
